@@ -18,7 +18,7 @@
         .game-wrap{
             background:#181818 url("bg.jpeg") no-repeat center 0 ;
             background-size: 100%;
-            padding-top: 240px;
+            padding-top: 200px;
             position: relative;
         }
         .game-wrap:after {
@@ -110,8 +110,8 @@
     </div>
 
     <div class="calculation-wrap">
-        <button class="btn-result" onclick="calculate(), add('=',' =')">=</button>
 
+        <button class="btn-reset" onclick="reset()">AC</button>
         <div class="button-align">
             <button class="user" onclick="add(50, '이복음')" id="num02">이복음</button>
             <button class="user" onclick="add(40, '조민희')" id="num01">조민희</button>
@@ -127,7 +127,7 @@
             <button class="btnMultiplication calculation-type" onclick="add('*', ' 곱하기 ')">x</button>
         </div>
 
-        <button class="btn-reset" onclick="reset()">AC</button>
+        <button class="btn-result" onclick="calculate(), add('=',' =')">=</button>
     </div>
 
     <input type="text" id="display" style="display: none" />
