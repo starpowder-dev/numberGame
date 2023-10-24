@@ -16,21 +16,15 @@
             box-sizing: border-box;
         }
         .game-wrap{
-            background:#181818 url("bg.jpeg") no-repeat center 0 ;
-            background-size: 100%;
-            padding-top: 200px;
+            background:#181818 url("jvils.png") no-repeat center 0 ;
+            background-size: contain;
+            padding-top: 365px;
             position: relative;
         }
-        .game-wrap:after {
-            background: linear-gradient(0deg, #181818 0, hsla(0, 0%, 9%, .987) 1.62%, hsla(0, 0%, 9%, .951) 3.1%, hsla(0, 0%, 9%, .896) 4.5%, hsla(0, 0%, 9%, .825) 5.8%, hsla(0, 0%, 9%, .741) 7.06%, hsla(0, 0%, 9%, .648) 8.24%, hsla(0, 0%, 9%, .55) 9.42%, hsla(0, 0%, 9%, .45) 10.58%, hsla(0, 0%, 9%, .352) 11.76%, hsla(0, 0%, 9%, .259) 12.94%, hsla(0, 0%, 9%, .175) 14.2%, hsla(0, 0%, 9%, .104) 15.5%, hsla(0, 0%, 9%, .049) 16.9%, hsla(0, 0%, 9%, .013) 18.38%, hsla(0, 0%, 9%, 0) 20%);
-            content: "";
-            left: 0;
-            top:0;
-            position: absolute;
-            width: 100%;
-            height: 240px;
-        }
+
         .result-wrap{
+            position: relative;
+            z-index: 88;
         }
 
         .calculation-wrap button{
@@ -55,7 +49,8 @@
             color:#ffffff;
             border-left:1px solid #9ab6dc !important;
             border-top:1px solid #9ab6dc !important;
-            font-size: 32px !important;
+            font-size: 42px !important;
+            line-height: 37px;
             font-family: 'Rajdhani', sans-serif;
         }
         .user{
@@ -65,12 +60,12 @@
         .btn-reset{
             width: 100%;
             background: #3C4559;
-            color:#788ABE;
+            color:orangered;
         }
 
         .btn-result{
             width: 100%;
-            background: #76D8DC;
+            background: orangered;
             color:#ffffff;
             font-size: 30px !important;
         }
@@ -99,6 +94,61 @@
             font-weight: 300;
             color: white;
         }
+        .btn-wrap{
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+        }
+        .btn-result{
+            width: 130%;
+        }
+        .btnMultiplication{
+            font-size: 32px !important;
+        }
+        .btn-list-open{
+            background: orange;
+            width: 25%;
+            border-left:1px solid #4C5A6D !important;
+            border-top:1px solid #4C5A6D !important;
+            height: 90px;
+        }
+        .list-wrap{
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            top: 50px;
+            bottom: 50px;
+            background: white;
+            z-index: 999;
+            padding:25px 50px;
+            overflow-y: auto;
+            display: none;
+        }
+        .list-wrap h2{
+            margin-bottom: 16px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .list-wrap ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .list-wrap li{
+            width: 50%;
+            font-family: 'Rajdhani', sans-serif;
+            margin:12px 0;
+            border-bottom: 1px solid #9ab6dc;
+            padding:4px 0;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .list-wrap li span{
+            margin-left: 30px;
+            display: inline-block;
+            font-size: 18px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -111,26 +161,76 @@
 
     <div class="calculation-wrap">
 
-        <button class="btn-reset" onclick="reset()">AC</button>
+        <div class="btn-wrap">
+            <button class="btn-result" onclick="calculate(), add('=',' =')">=</button><button class="btn-reset" onclick="reset()">AC</button>
+        </div>
         <div class="button-align">
-            <button class="user" onclick="add(50, '이복음')" id="num02">이복음</button>
-            <button class="user" onclick="add(40, '조민희')" id="num01">조민희</button>
-            <button class="user" onclick="add(35, '서대성')" id="num05">서대성</button>
             <button class="btnplus calculation-type" onclick="add('+', '+')">+</button>
-            <button class="user" onclick="add(27, '석지언')" id="num06">석지언</button>
-            <button class="user" onclick="add(15, '김유정')" id="num03">김유정</button>
-            <button class="user" onclick="add(5, '정준호')" id="num04">정준호</button>
-            <button class="btnMinus calculation-type" onclick="add('-', '-')">-</button>
-            <button class="user" onclick="add(18, '언지석')" id="num06">언지석</button>
-            <button class="user" onclick="add(8, '심유정')" id="num03">심유정</button>
-            <button class="user" onclick="add(41, '이성대')" id="num04">이성대</button>
-            <button class="btnMultiplication calculation-type" onclick="add('*', ' 곱하기 ')">x</button>
+            <button class="btnMinus calculation-type" onclick="add('/', '/')">÷</button>
+            <button class="btnMultiplication calculation-type" onclick="add('*', ' * ')">x</button>
+            <button class="btnMultiplication calculation-type" onclick="add('0', ' 0 ')">0</button>
+
+
+            <button class="user" onclick="add(8, '김성겸')" id="num01">김성겸</button>
+            <button class="user" onclick="add(5, '이성대')" id="num02">이성대</button>
+            <button class="user" onclick="add(13, '류세현')" id="num03">류세현</button>
+            <button class="user" onclick="add(20, '안홍철')" id="num04">안홍철</button>
+            <button class="user" onclick="add(21, '조아라')" id="num05">조아라</button>
+            <button class="user" onclick="add(25, '김옥중')" id="num06">김옥중</button>
+            <button class="user" onclick="add(26, '정병윤')" id="num07">정병윤</button>
+            <button class="user" onclick="add(29, '이석규')" id="num08">이석규</button>
+            <button class="user" onclick="add(31, '심유정')" id="num09">심유정</button>
+            <button class="user" onclick="add(36, '윤소라')" id="num10">윤소라</button>
+            <button class="user" onclick="add(39, '최명선')" id="num11">최명선</button>
+            <button class="user" onclick="add(43, '강성욱')" id="num12">강성욱</button>
+            <button class="user" onclick="add(55, '문설웅')" id="num13">문설웅</button>
+            <button class="user" onclick="add(57, '양잎새')" id="num14">양잎새</button>
+            <button class="user" onclick="add(58, '오현민')" id="num15">오현민</button>
+            <button class="user" onclick="add(67, '김동원')" id="num16">김동원</button>
+            <button class="user" onclick="add(75, '강재형')" id="num17">강재형</button>
+            <button class="user" onclick="add(76, '박빈')" id="num18">박빈</button>
+            <button class="user" onclick="add(79, '김다인')" id="num19">김다인</button>
+            <button class="user" onclick="add(82, '안규상')" id="num20">안규상</button>
+            <button class="user" onclick="add(92, '최명훈')" id="num21">최명훈</button>
+            <button class="user" onclick="add(93, '김병석')" id="num22">김병석</button>
+            <button class="user" onclick="add(95, '유보경')" id="num23">유보경</button>
+            <button class="btn-list-open" id="num24">정답</button>
         </div>
 
-        <button class="btn-result" onclick="calculate(), add('=',' =')">=</button>
+
     </div>
 
     <input type="text" id="display" style="display: none" />
+
+    <div class="list-wrap">
+        <h2>정답리스트</h2>
+        <ul>
+            <li>13 <span>류세현</span></li>
+            <li>43 <span>강성욱</span></li>
+            <li>93 <span>김병석</span></li>
+            <li>79 <span>김다인</span></li>
+            <li>8 <span>김성겸</span></li>
+            <li>76<span>박빈</span></li>
+            <li>39<span>최명선</span></li>
+            <li>92<span>최명훈</span></li>
+            <li>36<span>윤소라</span></li>
+            <li>55<span>문설웅</span></li>
+            <li>67<span>김동원</span></li>
+            <li>95<span>유보경</span></li>
+            <li>25<span>김옥중</span></li>
+            <li>21<span>조아라</span></li>
+            <li>57<span>양잎새</span></li>
+            <li>26<span>정병윤</span></li>
+            <li>58<span>오현민</span></li>
+            <li>75<span>강재형</span></li>
+            <li>29<span>이석규</span></li>
+            <li>20<span>안홍철</span></li>
+            <li>5<span>이성대</span></li>
+            <li>82<span>안규상</span></li>
+            <li>31<span>심유정</span></li>
+        </ul>
+
+    </div>
 </div>
 
 
@@ -161,6 +261,15 @@
         document.getElementById('result').value = "";
     }
 
+    const btnListOpen = document.querySelector('.btn-list-open');
+    const listWrap = document.querySelector('.list-wrap');
+    btnListOpen.addEventListener('click',()=>{
+        listWrap.style.display = 'block'
+    })
+
+    listWrap.addEventListener('click',()=>{
+        listWrap.style.display = 'none'
+    })
 </script>
 </body>
 </html>
